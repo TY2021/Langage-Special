@@ -1,0 +1,74 @@
+デッドロック
+aoi-no-MacBook-Pro:Racket inomata2$ spin -a Diner.pml
+aoi-no-MacBook-Pro:Racket inomata2$ gcc -o pan pan.c
+aoi-no-MacBook-Pro:Racket inomata2$ ./pan 
+pan:1: invalid end state (at depth 20) <- デッドロックのエラー
+pan: wrote Diner.pml.trail
+
+(Spin Version 6.4.8 -- 2 March 2018)
+Warning: Search not completed
+	 + Partial Order Reduction
+
+Full statespace search for:
+     never claim		- (none specified)
+     assertion violations	+
+     acceptance   cycles 	- (not selected)
+     invalid end states		+
+
+State-vector 140 byte, depth reached 21, errors: 1
+       22 states, stored
+        0 states, matched
+       22 transitions (= stored+matched)
+        5 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.004	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.290	actual memory usage for states
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  128.730	total actual memory usage
+
+aoi-no-MacBook-Pro:Racket inomata2$ spin -p -t  Diner.pml
+#processes: 6
+		fork[0] = BUSY
+		fork[1] = BUSY
+		fork[2] = BUSY
+		fork[3] = BUSY
+		fork[4] = BUSY
+
+ライブロック
+aoi-no-MacBook-Pro:Racket inomata2$ atom Diner1.pml
+aoi-no-MacBook-Pro:Racket inomata2$ spin -a Diner1.pml
+aoi-no-MacBook-Pro:Racket inomata2$ gcc -o pan pan.c
+aoi-no-MacBook-Pro:Racket inomata2$ ./pan
+pan:1: invalid end state (at depth 25) <-ライブロックのエラー
+pan: wrote Diner1.pml.trail
+
+(Spin Version 6.4.8 -- 2 March 2018)
+Warning: Search not completed
+	 + Partial Order Reduction
+
+Full statespace search for:
+     never claim		- (none specified)
+     assertion violations	+
+     acceptance   cycles 	- (not selected)
+     invalid end states		+
+
+State-vector 140 byte, depth reached 26, errors: 1
+       22 states, stored
+        0 states, matched
+       22 transitions (= stored+matched)
+       10 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.004	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.289	actual memory usage for states
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  128.730	total actual memory usage
+
+
+
+pan: elapsed time 0 seconds

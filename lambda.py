@@ -1,0 +1,3 @@
+num = [2,3,6,7,5]
+double = lambda x: 2 * x
+print map(double,num)

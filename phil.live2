@@ -1,0 +1,14 @@
+#define one  (Philosopher[1]@One)
+#define eat  (Philosopher[1]@Eat)
+
+never {    /* ! ([] (one -> <> eat)) */
+T0_init:
+	if
+	:: (! ((eat)) && (one)) -> goto accept_S4
+	:: (1) -> goto T0_init
+	fi;
+accept_S4:
+	if
+	:: (! ((eat))) -> goto accept_S4
+	fi;
+}
