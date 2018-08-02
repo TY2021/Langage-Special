@@ -1,25 +1,30 @@
-#define SYNCH 0
+#include <stdio.h>
+#include <pthread.h>
 
+#define SYNCH 0
+int buf[];
+int in = 0;
+int out = 0;
+int count = 0;
+int size;
 
 void put(int msg) {
-  while (count == size) {
-    wait();
+  if (count == size) {
+    pthread_mutex_lock;
   }
   buf[in] = msg;
   ++count;
   in = (in + 1) % size;
-
 }
 
 int get() {
-  while (count == 0) {
-    wait();
+  if (count == 0) {
+    pthread_mutex_lock;
   }
   int msg = buf[out];
   buf[out] = 0;
   --count;
   out = (out + 1) % size;
-
   return msg;
 }
 
@@ -41,5 +46,5 @@ void Producer() {
 }
 
 void main() {
-  
+
 }

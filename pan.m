@@ -61,26 +61,26 @@
 		_m = 3; goto P999; /* 0 */
 
 		 /* PROC philosopher */
-	case 8: // STATE 1 - Diner2.pml:15 - [(((id%2)==0))] (12:0:4 - 1)
+	case 8: // STATE 1 - Diner2.pml:15 - [((((id%2)==0)&&(fork[left]!=BUSY)))] (12:0:4 - 1)
 		IfNotBlocked
 		reached[0][1] = 1;
-		if (!(((((P0 *)this)->id%2)==0)))
+		if (!((((((P0 *)this)->id%2)==0)&&(now.fork[ Index(((P0 *)this)->left, 5) ]!=1))))
 			continue;
 		/* merge: fork[right] = BUSY(12, 2, 12) */
 		reached[0][2] = 1;
 		(trpt+1)->bup.ovals = grab_ints(4);
-		(trpt+1)->bup.ovals[0] = fork[ Index(((P0 *)this)->right, 5) ];
-		fork[ Index(((P0 *)this)->right, 5) ] = 1;
+		(trpt+1)->bup.ovals[0] = now.fork[ Index(((P0 *)this)->right, 5) ];
+		now.fork[ Index(((P0 *)this)->right, 5) ] = 1;
 #ifdef VAR_RANGES
-		logval("fork[philosopher:right]", fork[ Index(((P0 *)this)->right, 5) ]);
+		logval("fork[philosopher:right]", now.fork[ Index(((P0 *)this)->right, 5) ]);
 #endif
 		;
 		/* merge: fork[left] = BUSY(12, 3, 12) */
 		reached[0][3] = 1;
-		(trpt+1)->bup.ovals[1] = fork[ Index(((P0 *)this)->left, 5) ];
-		fork[ Index(((P0 *)this)->left, 5) ] = 1;
+		(trpt+1)->bup.ovals[1] = now.fork[ Index(((P0 *)this)->left, 5) ];
+		now.fork[ Index(((P0 *)this)->left, 5) ] = 1;
 #ifdef VAR_RANGES
-		logval("fork[philosopher:left]", fork[ Index(((P0 *)this)->left, 5) ]);
+		logval("fork[philosopher:left]", now.fork[ Index(((P0 *)this)->left, 5) ]);
 #endif
 		;
 		/* merge: .(goto)(12, 8, 12) */
@@ -127,22 +127,26 @@
 		reached[0][11] = 1;
 		Printf("Philosopher%d is eating.\n", ((P0 *)this)->id);
 		_m = 3; goto P999; /* 2 */
-	case 10: // STATE 5 - Diner2.pml:16 - [fork[left] = BUSY] (0:12:4 - 1)
+	case 10: // STATE 4 - Diner2.pml:16 - [((((id%2)!=0)&&(fork[right]!=BUSY)))] (12:0:4 - 1)
 		IfNotBlocked
+		reached[0][4] = 1;
+		if (!((((((P0 *)this)->id%2)!=0)&&(now.fork[ Index(((P0 *)this)->right, 5) ]!=1))))
+			continue;
+		/* merge: fork[left] = BUSY(12, 5, 12) */
 		reached[0][5] = 1;
 		(trpt+1)->bup.ovals = grab_ints(4);
-		(trpt+1)->bup.ovals[0] = fork[ Index(((P0 *)this)->left, 5) ];
-		fork[ Index(((P0 *)this)->left, 5) ] = 1;
+		(trpt+1)->bup.ovals[0] = now.fork[ Index(((P0 *)this)->left, 5) ];
+		now.fork[ Index(((P0 *)this)->left, 5) ] = 1;
 #ifdef VAR_RANGES
-		logval("fork[philosopher:left]", fork[ Index(((P0 *)this)->left, 5) ]);
+		logval("fork[philosopher:left]", now.fork[ Index(((P0 *)this)->left, 5) ]);
 #endif
 		;
 		/* merge: fork[right] = BUSY(12, 6, 12) */
 		reached[0][6] = 1;
-		(trpt+1)->bup.ovals[1] = fork[ Index(((P0 *)this)->right, 5) ];
-		fork[ Index(((P0 *)this)->right, 5) ] = 1;
+		(trpt+1)->bup.ovals[1] = now.fork[ Index(((P0 *)this)->right, 5) ];
+		now.fork[ Index(((P0 *)this)->right, 5) ] = 1;
 #ifdef VAR_RANGES
-		logval("fork[philosopher:right]", fork[ Index(((P0 *)this)->right, 5) ]);
+		logval("fork[philosopher:right]", now.fork[ Index(((P0 *)this)->right, 5) ]);
 #endif
 		;
 		/* merge: .(goto)(12, 8, 12) */
@@ -165,24 +169,24 @@
 		/* merge: printf('Philosopher%d is eating.\\n',id)(12, 11, 12) */
 		reached[0][11] = 1;
 		Printf("Philosopher%d is eating.\n", ((P0 *)this)->id);
-		_m = 3; goto P999; /* 4 */
+		_m = 3; goto P999; /* 5 */
 	case 11: // STATE 12 - Diner2.pml:21 - [fork[left] = FREE] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][12] = 1;
-		(trpt+1)->bup.oval = fork[ Index(((P0 *)this)->left, 5) ];
-		fork[ Index(((P0 *)this)->left, 5) ] = 2;
+		(trpt+1)->bup.oval = now.fork[ Index(((P0 *)this)->left, 5) ];
+		now.fork[ Index(((P0 *)this)->left, 5) ] = 2;
 #ifdef VAR_RANGES
-		logval("fork[philosopher:left]", fork[ Index(((P0 *)this)->left, 5) ]);
+		logval("fork[philosopher:left]", now.fork[ Index(((P0 *)this)->left, 5) ]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
 	case 12: // STATE 13 - Diner2.pml:22 - [fork[right] = FREE] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][13] = 1;
-		(trpt+1)->bup.oval = fork[ Index(((P0 *)this)->right, 5) ];
-		fork[ Index(((P0 *)this)->right, 5) ] = 2;
+		(trpt+1)->bup.oval = now.fork[ Index(((P0 *)this)->right, 5) ];
+		now.fork[ Index(((P0 *)this)->right, 5) ] = 2;
 #ifdef VAR_RANGES
-		logval("fork[philosopher:right]", fork[ Index(((P0 *)this)->right, 5) ]);
+		logval("fork[philosopher:right]", now.fork[ Index(((P0 *)this)->right, 5) ]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */

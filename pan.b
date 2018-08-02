@@ -38,8 +38,8 @@
 	case 8: // STATE 10
 		;
 		((P0 *)this)->state = trpt->bup.ovals[2];
-		fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.ovals[1];
-		fork[ Index(((P0 *)this)->right, 5) ] = trpt->bup.ovals[0];
+		now.fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.ovals[1];
+		now.fork[ Index(((P0 *)this)->right, 5) ] = trpt->bup.ovals[0];
 		;
 		ungrab_ints(trpt->bup.ovals, 4);
 		goto R999;
@@ -54,21 +54,21 @@
 	case 10: // STATE 10
 		;
 		((P0 *)this)->state = trpt->bup.ovals[2];
-		fork[ Index(((P0 *)this)->right, 5) ] = trpt->bup.ovals[1];
-		fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.ovals[0];
+		now.fork[ Index(((P0 *)this)->right, 5) ] = trpt->bup.ovals[1];
+		now.fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.ovals[0];
 		;
 		ungrab_ints(trpt->bup.ovals, 4);
 		goto R999;
 
 	case 11: // STATE 12
 		;
-		fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.oval;
+		now.fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.oval;
 		;
 		goto R999;
 
 	case 12: // STATE 13
 		;
-		fork[ Index(((P0 *)this)->right, 5) ] = trpt->bup.oval;
+		now.fork[ Index(((P0 *)this)->right, 5) ] = trpt->bup.oval;
 		;
 		goto R999;
 

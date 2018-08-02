@@ -18,15 +18,10 @@ proctype philosopher(int id) {
     state = HUNGRY;
     atomic {
           if
-            :: fork[left] != BUSY -> fork[left] = BUSY;
-            :: else -> fork[right] = FREE;
+            :: fork[left] == BUSY -> fork[right] = FREE;
+            :: else -> progress: fork[left] = BUSY; state = EATING; printf("Philosopher%d is eating.\n",id); fork[left] = FREE; fork[right] = FREE; state = THINKING;
           fi
     }
-    state = EATING;
-    printf("Philosopher%d is eating.\n",id);
-    fork[left] = FREE;
-    fork[right] = FREE;
-    state = THINKING;
   od
 }
 

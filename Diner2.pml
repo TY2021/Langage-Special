@@ -5,15 +5,15 @@ mtype {EATING, THINKING, HUNGRY};
 mtype fork[5] = FREE;
 
 proctype philosopher(int id) {
-  int n = NumPhils
+  int n = NumPhils;
   int left = ((id - 1) + n) % n;
   int right = id;
   mtype state = THINKING;
   do
     :: atomic {
           if
-            :: id % 2 == 0 -> fork[right] = BUSY; fork[left] = BUSY;
-            :: else -> fork[left] = BUSY; fork[right] = BUSY;
+            :: id % 2 == 0 && fork[left] != BUSY -> fork[right] = BUSY; fork[left] = BUSY;
+            :: id % 2 != 0 && fork[right] != BUSY -> fork[left] = BUSY ; fork[right] = BUSY;
           fi
     }
     state = EATING;

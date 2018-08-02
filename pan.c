@@ -12304,10 +12304,16 @@ iniglobals(int calling_pid)
 	{	int l_in;
 		for (l_in = 0; l_in < 5; l_in++)
 		{
-			fork[l_in] = 2;
+			now.fork[l_in] = 2;
 		}
 	}
 #ifdef VAR_RANGES
+	{	int l_in;
+		for (l_in = 0; l_in < 5; l_in++)
+		{
+			logval("fork[l_in]", now.fork[l_in]);
+		}
+	}
 #endif
 }
 
@@ -14009,6 +14015,12 @@ c_globals(void)
 	printf("	mtype  EATING:	5\n");
 	printf("	mtype  THINKING:	4\n");
 	printf("	mtype  HUNGRY:	3\n");
+	{	int l_in;
+		for (l_in = 0; l_in < 5; l_in++)
+		{
+			printf("	mtype  fork[%d]:	%d\n", l_in, now.fork[l_in]);
+		}
+	}
 }
 void
 c_locals(int pid, int tp)

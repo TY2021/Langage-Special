@@ -392,6 +392,7 @@ typedef struct State {
 		unsigned short _event;
 	#endif
 #endif
+	uchar fork[5];
 #ifdef TRIX
 	/* room for 512 proc+chan ptrs, + safety margin */
 	char *_ids_[MAXPROC+MAXQ+4];
@@ -413,7 +414,6 @@ typedef struct TRIX_v6 {
 #endif
 
 #define HAS_TRACK	0
-/* hidden variable: */	uchar fork[5];
 #define FORWARD_MOVES	"pan.m"
 #define BACKWARD_MOVES	"pan.b"
 #define TRANSITIONS	"pan.t"

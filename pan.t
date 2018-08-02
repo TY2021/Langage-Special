@@ -52,15 +52,15 @@ settable(void)
 	T = trans[0][7] = settr(6,2,0,0,0,"IF", 1, 2, 0);
 	T = T->nxt	= settr(6,2,1,0,0,"IF", 1, 2, 0);
 	    T->nxt	= settr(6,2,4,0,0,"IF", 1, 2, 0);
-	trans[0][1]	= settr(0,0,12,8,8,"(((id%2)==0))", 1, 2, 0); /* m: 2 -> 12,0 */
+	trans[0][1]	= settr(0,0,12,8,8,"((((id%2)==0)&&(fork[left]!=BUSY)))", 1, 2, 0); /* m: 2 -> 12,0 */
 	reached0[2] = 1;
 	trans[0][2]	= settr(0,0,0,0,0,"fork[right] = BUSY",0,0,0);
 	trans[0][3]	= settr(0,0,0,0,0,"fork[left] = BUSY",0,0,0);
 	trans[0][8]	= settr(7,0,12,9,9,".(goto)", 1, 2, 0); /* m: 10 -> 0,12 */
 	reached0[10] = 1;
-	trans[0][4]	= settr(3,2,5,2,0,"else", 1, 2, 0);
-	trans[0][5]	= settr(4,0,12,10,10,"fork[left] = BUSY", 1, 2, 0); /* m: 6 -> 0,12 */
-	reached0[6] = 1;
+	trans[0][4]	= settr(3,0,12,10,10,"((((id%2)!=0)&&(fork[right]!=BUSY)))", 1, 2, 0); /* m: 5 -> 12,0 */
+	reached0[5] = 1;
+	trans[0][5]	= settr(0,0,0,0,0,"fork[left] = BUSY",0,0,0);
 	trans[0][6]	= settr(0,0,0,0,0,"fork[right] = BUSY",0,0,0);
 	trans[0][10]	= settr(0,0,0,0,0,"state = EATING",0,0,0);
 	trans[0][11]	= settr(0,0,0,0,0,"printf('Philosopher%d is eating.\\n',id)",0,0,0);
