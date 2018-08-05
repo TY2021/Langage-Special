@@ -2,7 +2,7 @@
 #define PAN_H
 
 #define SpinVersion	"Spin Version 6.4.8 -- 2 March 2018"
-#define PanSource	"Diner2.pml"
+#define PanSource	"Diner1.pml"
 
 #define G_long	8
 #define G_int	4
@@ -133,14 +133,14 @@ typedef struct S_F_MAP {
 } S_F_MAP;
 
 #define _nstates1	10	/* :init: */
-#define minseq1	18
-#define maxseq1	26
+#define minseq1	23
+#define maxseq1	31
 #define _endstate1	9
 
-#define _nstates0	19	/* philosopher */
+#define _nstates0	24	/* philosopher */
 #define minseq0	0
-#define maxseq0	17
-#define _endstate0	18
+#define maxseq0	22
+#define _endstate0	23
 
 extern short src_ln1[];
 extern short src_ln0[];
@@ -148,8 +148,8 @@ extern S_F_MAP src_file1[];
 extern S_F_MAP src_file0[];
 
 #define T_ID	unsigned char
-#define _T5	15
-#define _T2	16
+#define _T5	13
+#define _T2	14
 #define WS		8 /* word size in bytes */
 #define SYNC	0
 #define ASYNC	0
@@ -423,7 +423,7 @@ typedef struct TRIX_v6 {
 
 #define _start2	0 /* np_ */
 #define _start1	6
-#define _start0	15
+#define _start0	20
 #ifdef NP
 	#define ACCEPT_LAB	1 /* at least 1 in np_ */
 #else
@@ -455,7 +455,7 @@ typedef struct TRIX_v6 {
 #if NCORE>1 && !defined(MEMLIM)
 	#define MEMLIM	(2048)	/* need a default, using 2 GB */
 #endif
-#define PROG_LAB	0 /* progress labels */
+#define PROG_LAB	1 /* progress labels */
 #define NQS	0
 typedef struct Q0 {	/* generic q */
 	uchar Qlen;	/* q_size */
@@ -783,7 +783,7 @@ void qsend(int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	17
+#define NTRANS	15
 #if defined(BFS_PAR) || NCORE>1
 	void e_critical(int);
 	void x_critical(int);

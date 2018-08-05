@@ -179,27 +179,23 @@ Full statespace search for:
 	invalid end states	+
 
 State-vector 140 byte, depth reached 1678, errors: 0
-     5517 states, stored
-    14962 states, matched
-    20479 transitions (= stored+matched)
-        0 atomic steps
-hash conflicts:         2 (resolved)
 
-Stats on memory usage (in Megabytes):
-    0.884	equivalent memory usage for states (stored*(State-vector + overhead))
-    0.974	actual memory usage for states
-  128.000	memory used for hash table (-w24)
-    0.534	memory used for DFS stack (-m10000)
-  129.413	total actual memory usage
+$ spin -a Diner2.pml
+$ gcc -DNP -o pan pan.c
+$ ./pan -l
 
+(Spin Version 6.4.8 -- 2 March 2018)
+	+ Partial Order Reduction
 
-unreached in proctype philosopher
-	Diner2.pml:25, state 18, "-end-"
-	(1 of 18 states)
-unreached in init
-	(0 of 9 states)
+Full statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
 
-到達性の検証でエラーは出なかった。
+State-vector 148 byte, depth reached 3667, errors: 0
+
+到達性・進行性の検証でエラーは出なかった。
 プログラムの動作を以下に示す。
 
 $ spin Diner2.pml

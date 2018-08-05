@@ -12,12 +12,12 @@ proctype philosopher(int id) {
   do
     :: atomic {
           if
-            :: id % 2 == 0 && fork[left] != BUSY -> fork[right] = BUSY; fork[left] = BUSY;
-            :: id % 2 != 0 && fork[right] != BUSY -> fork[left] = BUSY ; fork[right] = BUSY;
+            :: id % 2 == 0 && fork[right] != BUSY -> fork[right] = BUSY; fork[left] = BUSY;
+            :: id % 2 != 0 && fork[left] != BUSY -> fork[left] = BUSY ; fork[right] = BUSY;
           fi
     }
     state = EATING;
-    printf("Philosopher%d is eating.\n",id);
+    printf("Philosopher%d is eating.\n",id); progress:
     fork[left] = FREE;
     fork[right] = FREE;
     state = THINKING;
