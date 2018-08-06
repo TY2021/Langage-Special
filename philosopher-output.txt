@@ -7,7 +7,30 @@ pan: wrote Diner.pml.trail
 ------略-------
 
 pan:1: invalid end state (at depth 20)で、無効な状態があるというエラーである。
-そのため、無効な状態になる状況をトレースしてみる。
+そのため、無効な状態になる状況を実行・トレースしてみる。
+
+$ spin Diner.pml
+          Philosopher0 is eating.
+              Philosopher1 is eating.
+                  Philosopher2 is eating.
+                      Philosopher3 is eating.
+                          Philosopher4 is eating.
+          Philosopher0 is eating.
+          Philosopher0 is eating.
+      timeout
+#processes: 6
+		fork[0] = BUSY
+		fork[1] = BUSY
+		fork[2] = BUSY
+		fork[3] = BUSY
+		fork[4] = BUSY
+114:	proc  5 (philosopher:1) Diner.pml:20 (state 11)
+114:	proc  4 (philosopher:1) Diner.pml:20 (state 11)
+114:	proc  3 (philosopher:1) Diner.pml:20 (state 11)
+114:	proc  2 (philosopher:1) Diner.pml:20 (state 11)
+114:	proc  1 (philosopher:1) Diner.pml:20 (state 11)
+114:	proc  0 (:init::1) Diner.pml:41 (state 9) <valid end state>
+6 processes created
 
 $ spin -p -t  Diner.pml
 using statement merging
