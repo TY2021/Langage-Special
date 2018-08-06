@@ -113,6 +113,35 @@ Philosopher1 is eating.
 Philosopher1 is eating.
             Philosopher4 is eating.
 ------略-------
+Philosopher0 is eating.
+                          Philosopher4 is eating.
+                  Philosopher2 is eating.
+                  Philosopher2 is eating.
+          Philosopher0 is eating.
+                          Philosopher4 is eating.
+              Philosopher1 is eating.
+                      Philosopher3 is eating.
+                  Philosopher2 is eating.
+                          Philosopher4 is eating.
+          Philosopher0 is eating.
+              Philosopher1 is eating.
+                      Philosopher3 is eating.
+              Philosopher1 is eating.
+                          Philosopher4 is eating.
+                  Philosopher2 is eating.
+          Philosopher0 is eating.
+              Philosopher1 is eating.
+                          Philosopher4 is eating.
+                  Philosopher2 is eating.
+          Philosopher0 is eating.
+                      Philosopher3 is eating.
+                      Philosopher3 is eating.
+              Philosopher1 is eating.
+                          Philosopher4 is eating.
+              Philosopher1 is eating.
+                  Philosopher2 is eating.
+          Philosopher0 is eating.
+
 
 
 $ spin -p -t Diner1.pml
