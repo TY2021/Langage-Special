@@ -1,3 +1,4 @@
+/*デッドロック*/
 #define NumPhils 5;
 
 mtype {FREE, BUSY};
