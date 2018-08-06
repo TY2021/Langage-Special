@@ -8,6 +8,7 @@ proctype philosopher(int id) {
   int n = NumPhils
   int left = ((id - 1) + n) % n;
   int right = id;
+  int fork_flag = 0;
   mtype state = THINKING;
   do
     :: atomic {
@@ -19,9 +20,10 @@ proctype philosopher(int id) {
     atomic {
           if
             :: fork[left] == BUSY -> fork[right] = FREE;
-            :: else -> progress: fork[left] = BUSY; state = EATING; printf("Philosopher%d is eating.\n",id); fork[left] = FREE; fork[right] = FREE; state = THINKING;
+            :: else -> fork[left] = BUSY; fork_flag = 1;
           fi
     }
+    :: fork_flag == 1 -> progress: state = EATING; printf("Philosopher%d is eating.\n",id); fork[left] = FREE; fork[right] = FREE; state = THINKING; fork_flag = 0;
   od
 }
 

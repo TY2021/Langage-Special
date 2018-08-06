@@ -35,36 +35,51 @@
 
 		 /* PROC philosopher */
 
-	case 8: // STATE 6
+	case 8: // STATE 10
 		;
-		((P0 *)this)->state = trpt->bup.ovals[1];
+		((P0 *)this)->state = trpt->bup.ovals[2];
+		now.fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.ovals[1];
 		now.fork[ Index(((P0 *)this)->right, 5) ] = trpt->bup.ovals[0];
 		;
-		ungrab_ints(trpt->bup.ovals, 3);
+		ungrab_ints(trpt->bup.ovals, 4);
 		goto R999;
 
-	case 9: // STATE 8
+	case 9: // STATE 10
+		;
+		((P0 *)this)->state = trpt->bup.ovals[0];
+		;
+		ungrab_ints(trpt->bup.ovals, 2);
+		goto R999;
+
+	case 10: // STATE 10
+		;
+		((P0 *)this)->state = trpt->bup.ovals[2];
+		now.fork[ Index(((P0 *)this)->right, 5) ] = trpt->bup.ovals[1];
+		now.fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.ovals[0];
+		;
+		ungrab_ints(trpt->bup.ovals, 4);
+		goto R999;
+
+	case 11: // STATE 12
+		;
+		now.fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.oval;
+		;
+		goto R999;
+
+	case 12: // STATE 13
 		;
 		now.fork[ Index(((P0 *)this)->right, 5) ] = trpt->bup.oval;
 		;
 		goto R999;
-;
-		
-	case 10: // STATE 17
+
+	case 13: // STATE 14
+		;
+		((P0 *)this)->state = trpt->bup.ovals[0];
+		;
+		ungrab_ints(trpt->bup.ovals, 2);
 		goto R999;
 
-	case 11: // STATE 15
-		;
-		((P0 *)this)->state = trpt->bup.ovals[4];
-		now.fork[ Index(((P0 *)this)->right, 5) ] = trpt->bup.ovals[3];
-		now.fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.ovals[2];
-		((P0 *)this)->state = trpt->bup.ovals[1];
-		now.fork[ Index(((P0 *)this)->left, 5) ] = trpt->bup.ovals[0];
-		;
-		ungrab_ints(trpt->bup.ovals, 7);
-		goto R999;
-
-	case 12: // STATE 23
+	case 14: // STATE 18
 		;
 		p_restor(II);
 		;

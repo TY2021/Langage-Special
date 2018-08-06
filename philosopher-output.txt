@@ -104,6 +104,17 @@ pan:1: non-progress cycle (at depth 34)は、
 プログラムの中でprogressの部分を通らない（処理が行われない）場合があるというエラーである。
 そのため、その状況をトレースしてみる。
 
+$ spin Diner1.pml
+Philosopher3 is eating.
+    Philosopher4 is eating.
+    Philosopher4 is eating.
+------略-------
+Philosopher1 is eating.
+Philosopher1 is eating.
+            Philosopher4 is eating.
+------略-------
+
+
 $ spin -p -t Diner1.pml
 starting claim 2
 spin: couldn't find claim 2 (ignored)
@@ -159,6 +170,8 @@ spin: trail ends after 44 steps
  44:	proc  0 (:init::1) Diner1.pml:41 (state 9) <valid end state>
 6 processes created
 
+単純に実行して見ると、哲学者1や4が食事を独占している部分がある。
+さらに、トレースの結果からは、
 <<<<<START OF CYCLE>>>>>からの動作を見ると、proc 5以外動作が見られない。
 proc 5でループが生じ、proc 5でフォークの動作が繰り返される。
 これは他のprocで処理が行われない部分があるということを示す。
